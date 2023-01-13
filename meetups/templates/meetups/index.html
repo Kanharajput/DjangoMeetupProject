@@ -10,6 +10,14 @@
 </head>
 <body>
     <h1> HI I am Back </h1>
-    <p> All meetups </p>    
+    <p> All meetups </p>
+    <!--django template language-->
+    {% if show_meetups_data %}
+        {% for meetup in all_meetups %}
+            <h2>{{meetup.title}}</h2>
+        {% endfor %}
+    {% else %}
+        <h2>No Meetup show</h2>
+    {% endif %}
 </body>
 </html>
