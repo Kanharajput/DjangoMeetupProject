@@ -6,18 +6,40 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="{% static 'meetups/base.css' %}" type="text/css" rel="stylesheet"/>
+    <link href="{% static 'meetups/all-meetups.css' %}" type="text/css" rel="stylesheet"/>
     <title>Document</title>
 </head>
 <body>
-    <h1> HI I am Back </h1>
-    <p> All meetups </p>
-    <!--django template language-->
-    {% if show_meetups_data %}
-        {% for meetup in all_meetups %}
-            <h2>{{meetup.title}}</h2>
-        {% endfor %}
-    {% else %}
-        <h2>No Meetup show</h2>
-    {% endif %}
+    <header id="main-header">
+        <nav> <a href="/meetups" id="main-logo">Django Meetups</a></nav>
+        <h1> We got great meetups coming up </h1>
+        <p> Find the one that best suits your needs </p>
+    </header>
+    <main>
+        <section>
+            <h2> Upcoming Meetups</h2>
+            <ol>
+                {% for meetup in all_meetups %}
+                    <li class="meetup-item">
+                        <article>
+                            <div class="meetup-summary">
+                                <div class="meetup-image">
+                                    <img src="" alt="">
+                                </div>
+                                <div class="meetup-details">
+                                    <h3>{{meetup.title}}</h3>
+                                    <address>{{meetup.location}}</address>
+                                </div>
+                            </div>
+                            <div class="meetup-actions">
+                                <a href="" class="btn" >More details</a>
+                            </div>
+                        </article>
+
+                    </li>
+                {% endfor %}
+            </ol>
+        </section>
+    </main>
 </body>
 </html>
