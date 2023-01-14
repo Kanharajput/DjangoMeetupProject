@@ -8,6 +8,7 @@ class Meetup(models.Model):
     location = models.CharField(max_length=50)
     address = models.CharField(max_length=30)
     slug = models.SlugField()
+    
 
     def __str__(self):
         return self.title
