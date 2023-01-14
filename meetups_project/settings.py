@@ -125,4 +125,9 @@ STATIC_URL = '/static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+
+# django will serve images through this url, it not let the server or attacker manipulate each file
+# add this folder to urls so django will aware of this
+MEDIA_URL = "/media-files/"  
+
 MEDIA_ROOT = BASE_DIR/"MediaUploads"     # media files will upload inside this folder
