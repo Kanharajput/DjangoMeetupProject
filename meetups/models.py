@@ -8,6 +8,7 @@ class Meetup(models.Model):
     location = models.CharField(max_length=50)
     address = models.CharField(max_length=30)
     slug = models.SlugField()
+    image = models.ImageField(upload_to="images",null=True)       # upload images inside images folder inside MediaUploads folder
     
 
     def __str__(self):
