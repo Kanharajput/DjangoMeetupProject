@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="{% static 'meetups/base.css' %}" type="text/css" rel="stylesheet"/>
     <link href="{% static 'meetups/all-meetups.css' %}" type="text/css" rel="stylesheet"/>
-    <title>Document</title>
+    <title>Meetups</title>
 </head>
 <body>
     <header id="main-header">
@@ -35,7 +35,6 @@
                                 <a href="{% url 'meetup_detail' meetup.slug %}" class="btn" >More details</a>
                             </div>
                         </article>
-
                     </li>
                 {% endfor %}
             </ol>

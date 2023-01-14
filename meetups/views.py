@@ -27,9 +27,26 @@ def index(request):
 
 
 def meetupDetail(request,slug):
-    meetup_details = {
-        "first-meetup":"This page will show the details of first meetup",
-        "second-meetup":"This page will show the details of second meetup"
-    }
-    meetup_detail = meetup_details[slug]
-    return HttpResponse(meetup_detail)
+    meetup_details = [
+                {
+                    "title":"first-meetup",
+                    "description":"Description of first meetup",
+                    "location":"Barda Punarwas",
+                    "address":"Kanha's Plot",
+                    "slug":"first-meetup"
+                },
+                {
+                    "title":"second-meetup",
+                    "description":"Description of second meetup",
+                    "location":"Bakaner",
+                    "address":" Mohit's Shop",
+                    "slug":"second-meetup"
+                }
+    ]
+
+    # find the dictionary which having the slug passed by user
+    for dict in meetup_details:
+        if dict["slug"] == slug:
+            meetup_detail = dict
+
+    return render(request,"meetups/meetup-details.html",{"meetup_detail":meetup_detail})
