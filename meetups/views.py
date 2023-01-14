@@ -15,7 +15,6 @@ def index(request):
                 "slug":"second-meetup"
             }
         ]
-        
     # always pass a single dictionary in render functions 
     # as there is only single dictionary acceptance is there 
     context = {
@@ -25,3 +24,12 @@ def index(request):
     return render(request,
                     "meetups/index.html",   
                         context)    
+
+
+def meetupDetail(request,slug):
+    meetup_details = {
+        "first-meetup":"This page will show the details of first meetup",
+        "second-meetup":"This page will show the details of second meetup"
+    }
+    meetup_detail = meetup_details[slug]
+    return HttpResponse(meetup_detail)
