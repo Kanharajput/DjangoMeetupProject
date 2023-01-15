@@ -14,7 +14,7 @@
     
 <main>
     <article>
-        <img src="{{meetup.image.url}}" alt="{{meetup.title}}">
+        <img src="{{meetup_detail.image.url}}" alt="{{meetup.title}}">
         <section id="location">
             <h2>Meetup Location</h2>
             <address>This meetup takes place in <span>{{meetup_detail.place.name}}</span>({{meetup_detail.place.address}}).</address>
@@ -23,7 +23,7 @@
             <h2>What this meetup about!</h2>
             <p>{{meetup_detail.description}}</p>
             <footer>
-                <p>Need more details? Please <a href=""> contact the organizer </a>
+                <p>Need more details? Please contact the organizer <a href="mailto:{{meetup_detail.organizer.email}}"> {{meetup_detail.organizer.name}} </a>
             </footer>
         </section>
         <section id="registration">
