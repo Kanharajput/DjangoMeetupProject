@@ -12,10 +12,12 @@ class Location(models.Model):
 
 
 class Participants(models.Model):
+    name = models.CharField(max_length=30,null=True)
     email = models.EmailField()
 
+
     def __str__(self):
-        return self.email
+        return self.name
 
     class Meta:
         verbose_name_plural = "Participants"
@@ -36,7 +38,7 @@ class Meetup(models.Model):
     image = models.ImageField(upload_to="images",null=True)       # upload images inside images folder inside MediaUploads folder
     date_time = models.DateTimeField(auto_now=True)
     place = models.ForeignKey(Location,on_delete=models.CASCADE,null=True)       # one to many
-    participants = models.ManyToManyField(Participants)       # doesn't need to set on_delete and null=True in many to many fields
+    participants = models.ManyToManyField(Participants,related_name="meetup")       # doesn't need to set on_delete and null=True in many to many fields
     organizer = models.OneToOneField(Organizer,on_delete=models.CASCADE,null=True)
     
     def __str__(self):

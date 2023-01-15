@@ -28,7 +28,16 @@
         </section>
         <section id="registration">
             <h2> Join us ! </h2>
-            FORM
+            <!--send this data to meetup_detail url, passing slug as this url need it 
+                and we have slug in our meetup_detail object so use it-->
+            {{registered}}
+            <form action="{% url 'meetup_detail' meetup_detail.slug %}" method="POST">
+                {% csrf_token %}
+                {{form}}
+                {% if not registered %}
+                    <button type="submit">Register Me!</button>
+                {% endif %}
+            </form>
         </section>
     </article>
 </main>
