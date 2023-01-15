@@ -26,6 +26,15 @@
                 <p>Need more details? Please contact the organizer <a href="mailto:{{meetup_detail.organizer.email}}"> {{meetup_detail.organizer.name}} </a>
             </footer>
         </section>
+
+        <section id="registered_users">
+            <ul>
+                {% for participant in participants %}
+                    <li>{{participant.name}}</li>
+                {% endfor %}
+            </ul>
+        </section>
+
         <section id="registration">
             <h2> Join us ! </h2>
             <!--send this data to meetup_detail url, passing slug as this url need it 

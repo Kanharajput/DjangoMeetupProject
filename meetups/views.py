@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from .models import Meetup
+from .models import Meetup,Participants
 from .forms import RegistrationForm
 
 # Create your views here.
@@ -19,19 +19,31 @@ def meetupDetail(request,meetup_slug):
         user_entered_form = RegistrationForm(request.POST)    # it will automatically fetch the entries
 
         if user_entered_form.is_valid():         # check is it valid if valid then
-            partictipant = user_entered_form.save()    # save the participants data
-            partictipant.meetup.add(meetup)                  # add this participant for the meetup
-            partictipant.save()             # save this data to database it know about database because it is created using that
-            context = {
+            username = user_entered_form.cleaned_data["name"]    # save the participants data
+            # was_created is variable , it store the boolean value created or not
+            registered_user,was_created = Participants.objects.get_or_create(name=username)   
+            registered_user.meetup.add(meetup)
+            # right now we have to add participants with meetup if participants is now or not it dosn't matter
+            # but to show case this feature i am writing here
+            #if was_created:
+                #meetup.participants.add(registered_user)
+                
+
+            context = { 
                 "meetup_detail":meetup,
-                "registered":"You are registered now"     # send back user to the same page but with registration info
+                "registered":"You are now registered for this meetup"     # send back user to the same page but with registration info
             }
             return render(request,"meetups/meetup-details.html",context)
 
 
     # below code is for get request
     new_form = RegistrationForm()
-
+    registered_users = meetup.participants.all()      # get all the registered users
     
-    return render(request,"meetups/meetup-details.html",{"meetup_detail":meetup,"form":new_form})
+    context = {
+        "meetup_detail":meetup,
+        "form":new_form,
+        "participants":registered_users
+    }
+    return render(request,"meetups/meetup-details.html",context)
 
